@@ -93,7 +93,11 @@
                   programs.fzf.enable = true;
                   programs.fzf.enableZshIntegration = true;
                   programs.exa.enable = true;
-                  programs.git.enable = true;
+                  programs.git = { 
+                   enable = true;
+                   userName = "drewmullen";
+                   userEmail = "mullen.drew@gmail.com";
+                  };
                   programs.zsh.enable = true;
                   programs.zsh.enableCompletion = true;
                   programs.zsh.enableAutosuggestions = true;
