@@ -19,9 +19,14 @@ $ nix --experimental-features "nix-command flakes" build .#darwinConfigurations.
 $ ./result/sw/bin/darwin-rebuild switch --flake ~/.config/nix
 ```
 
+To get a generic flake template
 
-To install from mac store:
+```
+$ nix flake new -t github:nix-community/nix-direnv
+```
 
-nix-direnv commands
+nix-direnv commands:
 
-flakes template
+```
+$ echo "use flake" >> .envrc && direnv allow
+```
