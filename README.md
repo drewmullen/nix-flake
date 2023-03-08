@@ -22,7 +22,7 @@ $ ./result/sw/bin/darwin-rebuild switch --flake ~/.config/nix
 To get a generic flake template
 
 ```
-$ nix flake new -t github:nix-community/nix-direnv
+$ nix flake new -t github:nix-community/nix-direnv .
 ```
 
 nix-direnv commands:
