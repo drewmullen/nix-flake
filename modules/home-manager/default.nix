@@ -10,10 +10,16 @@
     less
     nixfmt
     discord
+    jq
+    tree
+    packer
+    terraform
+    vault
+    gzip
     # signal-desktop # only available x86
     # steam # only available x86
     # spotify # only available x86
-    slack
+    # slack # annoying for macos permissions
     # inputs.pwnvim.packages."aarch64-darwin".default
   ];
   home.sessionVariables = {
@@ -29,12 +35,15 @@
       hashicorp.terraform
       waderyan.gitblame
       redhat.vscode-yaml
+
     ];
     userSettings = {
       "[nix]"."editor.tabSize" = 2;
       "nix.enableLanguageServer" = true;
       "nix.serverPath" = "${pkgs.nil}/bin/nil";
       "nix.serverSettings".nil.formatting.command = [ "${pkgs.nixfmt}/bin/nixfmt" ];
+
+      "[go]"."editor.tabSize" = 2;
 
       "[json]"."editor.defaultFormatter" = "vscode.json-language-features";
 
@@ -82,7 +91,7 @@
     userName = "drewmullen";
     userEmail = "mullen.drew@gmail.com";
     extraConfig = {
-      pull.rebase = "always";
+      pull.rebase = "true";
     };
   };
   programs.zsh = {
@@ -102,6 +111,9 @@
       gitamend = "git commit --amend -a --no-edit";
       gs = "git status";
       gb = "git branch -v";
+
+      tf = "terraform";
+      p = "packer";
     };
     initExtra = ''
       # ZSH doesnt have a binding for delete key
