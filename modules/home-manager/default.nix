@@ -43,6 +43,7 @@
     EDITOR = "vi";
     # "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
   };
+
   programs.vscode = {
     enable = true;
     extensions = with pkgs.vscode-extensions; [
@@ -109,6 +110,16 @@
       pull.rebase = "true";
     };
   };
+  programs.gpg = {
+    enable = true;
+  };
+  programs.ssh = {
+    enable = true;
+    extraConfig = ''
+Host *
+  IdentityAgent "~/.1password/agent.sock"
+    '';
+  };
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -132,6 +143,7 @@
       tf = "terraform";
       p = "packer";
     };
+    # Entered into ~/.zshrc
     initExtra = ''
       # ZSH doesnt have a binding for delete key
       bindkey "^[[3~" delete-char         # enable delete key
@@ -140,6 +152,9 @@
       bindkey "^[[1;9C" end-of-line       # cmd+→
       bindkey "\e[1;3D" backward-word     # ⌥←
       bindkey "\e[1;3C" forward-word      # ⌥→
+
+      # Set go bin in path
+      export PATH=$(go env GOPATH)/bin:$PATH
     '';
     history = {
       expireDuplicatesFirst = true;

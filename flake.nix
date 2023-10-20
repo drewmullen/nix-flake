@@ -36,6 +36,7 @@
             useUserPackages = true;
             users.dm.imports = [ ./modules/home-manager ];
           };
+          users.users.dm.home = "/Users/dm";
         }
       ];
     };
