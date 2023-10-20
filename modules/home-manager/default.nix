@@ -101,7 +101,7 @@
   programs.bat.config.theme = "TwoDark";
   programs.fzf.enable = true;
   programs.fzf.enableZshIntegration = true;
-  programs.exa.enable = true;
+  programs.eza.enable = true;
   programs.git = {
     enable = true;
     userName = "drewmullen";
@@ -124,7 +124,7 @@ Host *
     enable = true;
     enableCompletion = true;
     enableAutosuggestions = true;
-    enableSyntaxHighlighting = true;
+    syntaxHighlighting.enable = true;
     shellAliases = {
       ls = "ls --color=auto -F";
       ll = "ls -la --color=auto -F";
