@@ -16,7 +16,6 @@
     discord
     jq
     tree
-    gpg
 
     packer
     terraform
@@ -53,49 +52,49 @@
       waderyan.gitblame
       redhat.vscode-yaml
     ];
-    userSettings = {
-      "[nix]"."editor.tabSize" = 2;
-      "nix.enableLanguageServer" = true;
-      "nix.serverPath" = "${pkgs.nil}/bin/nil";
-      "nix.serverSettings".nil.formatting.command = [ "${pkgs.nixfmt}/bin/nixfmt" ];
+    # userSettings = {
+    #   "[nix]"."editor.tabSize" = 2;
+    #   "nix.enableLanguageServer" = true;
+    #   "nix.serverPath" = "${pkgs.nil}/bin/nil";
+    #   "nix.serverSettings".nil.formatting.command = [ "${pkgs.nixfmt}/bin/nixfmt" ];
 
-      "[go]"."editor.tabSize" = 2;
+    #   "[go]"."editor.tabSize" = 2;
 
-      "[json]"."editor.defaultFormatter" = "vscode.json-language-features";
+    #   "[json]"."editor.defaultFormatter" = "vscode.json-language-features";
 
-      "files.trimTrailingWhitespace" = true;
-      "files.insertFinalNewline" = true;
+    #   "files.trimTrailingWhitespace" = true;
+    #   "files.insertFinalNewline" = true;
 
-      "yaml.customTags" = [
-        "!And"
-        "!And sequence"
-        "!If"
-        "!If sequence"
-        "!Not"
-        "!Not sequence"
-        "!Equals"
-        "!Equals sequence"
-        "!Or"
-        "!Or sequence"
-        "!FindInMap"
-        "!FindInMap sequence"
-        "!Base64"
-        "!Join"
-        "!Join sequence"
-        "!Cidr"
-        "!Ref"
-        "!Sub"
-        "!Sub sequence"
-        "!GetAtt"
-        "!GetAZs"
-        "!ImportValue"
-        "!ImportValue sequence"
-        "!Select"
-        "!Select sequence"
-        "!Split"
-        "!Split sequence"
-      ];
-    };
+    #   "yaml.customTags" = [
+    #     "!And"
+    #     "!And sequence"
+    #     "!If"
+    #     "!If sequence"
+    #     "!Not"
+    #     "!Not sequence"
+    #     "!Equals"
+    #     "!Equals sequence"
+    #     "!Or"
+    #     "!Or sequence"
+    #     "!FindInMap"
+    #     "!FindInMap sequence"
+    #     "!Base64"
+    #     "!Join"
+    #     "!Join sequence"
+    #     "!Cidr"
+    #     "!Ref"
+    #     "!Sub"
+    #     "!Sub sequence"
+    #     "!GetAtt"
+    #     "!GetAZs"
+    #     "!ImportValue"
+    #     "!ImportValue sequence"
+    #     "!Select"
+    #     "!Select sequence"
+    #     "!Split"
+    #     "!Split sequence"
+    #   ];
+    # };
   };
   programs.bat.enable = true;
   programs.bat.config.theme = "TwoDark";
