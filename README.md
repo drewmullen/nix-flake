@@ -30,3 +30,10 @@ nix-direnv commands:
 ```
 $ echo "use flake" >> .envrc && direnv allow
 ```
+
+
+
+```
+nix flake init -t mine#tf-golang
+echo "use flake" >> .envrc && direnv allow
+```

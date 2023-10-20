@@ -37,10 +37,13 @@
     taps = [
       "fujiapple852/trippy"
       "noovolari/brew"
+      "minamijoyo/hcledit"
     ];
     brews = [
       "trippy"
       "leapp-cli"
+      "go"
+      "hcledit"
     ];
   };
 }

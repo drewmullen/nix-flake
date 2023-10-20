@@ -3,7 +3,11 @@
   home.stateVersion = "22.11";
   # specify my home-manager configs
   home.packages = with pkgs; [
+    ansible
     awscli2
+    eksctl
+    kubectl
+    azure-cli
     ripgrep
     fd
     curl
@@ -12,10 +16,22 @@
     discord
     jq
     tree
+    gpg
+
     packer
     terraform
+    vagrant
     vault
+    boundary
+
     gzip
+    pre-commit
+    tflint
+    tflint-plugins.tflint-ruleset-aws
+    terraform-docs
+    tfsec
+    checkov
+    tfupdate
     # signal-desktop # only available x86
     # steam # only available x86
     # spotify # only available x86
@@ -26,6 +42,7 @@
     PAGER = "less";
     CLICLOLOR = 1;
     EDITOR = "vi";
+    # "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
   };
   programs.vscode = {
     enable = true;
@@ -35,7 +52,6 @@
       hashicorp.terraform
       waderyan.gitblame
       redhat.vscode-yaml
-
     ];
     userSettings = {
       "[nix]"."editor.tabSize" = 2;
@@ -104,9 +120,11 @@
       ll = "ls -la --color=auto -F";
       catt = "/bin/cat";
       cat = "bat";
+      k = "kubectl";
+      argo-fwd = "kubectl port-forward -n argo svc/argo-cd-argocd-server 8080:443";
 
       ns = "darwin-rebuild switch --flake ~/.config/nix/.#";
-      nixupdate = "pushd ~/.config/nix; nix flake update; nixswitch; popd";
+      nixupdate = "pushd ~/.config/nix; nix flake update; ns; popd";
 
       gitamend = "git commit --amend -a --no-edit";
       gs = "git status";
