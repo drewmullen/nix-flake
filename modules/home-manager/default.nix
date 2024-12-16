@@ -1,10 +1,12 @@
 { pkgs, ... }: {
   # Don't change this when you change package input. Leave it alone.
-  home.stateVersion = "22.11";
+  home.stateVersion = "23.05"; #"22.11";
   # specify my home-manager configs
+
+
   home.packages = with pkgs; [
     ansible
-    awscli2
+    cdk
     eksctl
     kubectl
     azure-cli
@@ -13,7 +15,6 @@
     curl
     less
     nixfmt
-    discord
     jq
     tree
 
@@ -21,8 +22,8 @@
     terraform
     vagrant
     vault
-    boundary
 
+    go-task
     gzip
     pre-commit
     tflint
@@ -42,61 +43,62 @@
     CLICLOLOR = 1;
     EDITOR = "vi";
     # "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+    DOCKER_DEFAULT_PLATFORM=linux/amd64;
   };
 
-  programs.vscode = {
-    enable = true;
-    extensions = with pkgs.vscode-extensions; [
-      jnoortheen.nix-ide
-      golang.go
-      hashicorp.terraform
-      waderyan.gitblame
-      redhat.vscode-yaml
-    ];
-    # userSettings = {
-    #   "[nix]"."editor.tabSize" = 2;
-    #   "nix.enableLanguageServer" = true;
-    #   "nix.serverPath" = "${pkgs.nil}/bin/nil";
-    #   "nix.serverSettings".nil.formatting.command = [ "${pkgs.nixfmt}/bin/nixfmt" ];
+  # programs.vscode = {
+  #   enable = true;
+  #   extensions = with pkgs.vscode-extensions; [
+  #     jnoortheen.nix-ide
+  #     golang.go
+  #     hashicorp.terraform
+  #     waderyan.gitblame
+  #     redhat.vscode-yaml
+  #   ];
+  #   # userSettings = {
+  #   #   "[nix]"."editor.tabSize" = 2;
+  #   #   "nix.enableLanguageServer" = true;
+  #   #   "nix.serverPath" = "${pkgs.nil}/bin/nil";
+  #   #   "nix.serverSettings".nil.formatting.command = [ "${pkgs.nixfmt}/bin/nixfmt" ];
 
-    #   "[go]"."editor.tabSize" = 2;
+  #   #   "[go]"."editor.tabSize" = 2;
 
-    #   "[json]"."editor.defaultFormatter" = "vscode.json-language-features";
+  #   #   "[json]"."editor.defaultFormatter" = "vscode.json-language-features";
 
-    #   "files.trimTrailingWhitespace" = true;
-    #   "files.insertFinalNewline" = true;
+  #   #   "files.trimTrailingWhitespace" = true;
+  #   #   "files.insertFinalNewline" = true;
 
-    #   "yaml.customTags" = [
-    #     "!And"
-    #     "!And sequence"
-    #     "!If"
-    #     "!If sequence"
-    #     "!Not"
-    #     "!Not sequence"
-    #     "!Equals"
-    #     "!Equals sequence"
-    #     "!Or"
-    #     "!Or sequence"
-    #     "!FindInMap"
-    #     "!FindInMap sequence"
-    #     "!Base64"
-    #     "!Join"
-    #     "!Join sequence"
-    #     "!Cidr"
-    #     "!Ref"
-    #     "!Sub"
-    #     "!Sub sequence"
-    #     "!GetAtt"
-    #     "!GetAZs"
-    #     "!ImportValue"
-    #     "!ImportValue sequence"
-    #     "!Select"
-    #     "!Select sequence"
-    #     "!Split"
-    #     "!Split sequence"
-    #   ];
-    # };
-  };
+  #   #   "yaml.customTags" = [
+  #   #     "!And"
+  #   #     "!And sequence"
+  #   #     "!If"
+  #   #     "!If sequence"
+  #   #     "!Not"
+  #   #     "!Not sequence"
+  #   #     "!Equals"
+  #   #     "!Equals sequence"
+  #   #     "!Or"
+  #   #     "!Or sequence"
+  #   #     "!FindInMap"
+  #   #     "!FindInMap sequence"
+  #   #     "!Base64"
+  #   #     "!Join"
+  #   #     "!Join sequence"
+  #   #     "!Cidr"
+  #   #     "!Ref"
+  #   #     "!Sub"
+  #   #     "!Sub sequence"
+  #   #     "!GetAtt"
+  #   #     "!GetAZs"
+  #   #     "!ImportValue"
+  #   #     "!ImportValue sequence"
+  #   #     "!Select"
+  #   #     "!Select sequence"
+  #   #     "!Split"
+  #   #     "!Split sequence"
+  #   #   ];
+  #   # };
+  # };
   programs.bat.enable = true;
   programs.bat.config.theme = "TwoDark";
   programs.fzf.enable = true;
@@ -116,6 +118,9 @@
   programs.ssh = {
     enable = true;
     extraConfig = ''
+Host 192.168.6.124
+  IdentityFile ~/Downloads/id_ed25519.pub
+  IdentitiesOnly yes
 Host *
   IdentityAgent "~/.1password/agent.sock"
     '';
@@ -142,6 +147,7 @@ Host *
 
       tf = "terraform";
       p = "packer";
+      gitshorty = "Current repo short sha: $(git rev-parse --short HEAD)";
     };
     # Entered into ~/.zshrc
     initExtra = ''
@@ -165,6 +171,15 @@ Host *
 
   programs.starship.enable = true;
   programs.starship.enableZshIntegration = true;
+#   programs.terraform.package = (_: rec {
+#   version = "1.6.2";
+#   src = pkgs.fetchFromGitHub {
+#     owner = "hashicorp";
+#     repo = "terraform";
+#     rev = version;
+#     sha256 = "sha256-60aa3903b55f9a9ef8a98456396bef149a408eb4";
+#   };
+# });
   programs.alacritty = {
     enable = true;
     settings = {

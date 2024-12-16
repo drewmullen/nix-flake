@@ -44,6 +44,9 @@
       "leapp-cli"
       "go"
       "hcledit"
+      "node"
+      "cdk"
+      "aws-sam-cli"
     ];
   };
 }

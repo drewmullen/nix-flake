@@ -1,0 +1,15 @@
+{
+  "flakes": [
+    {
+      "from": {
+        "id": "mine",
+        "type": "indirect"
+      },
+      "to": {
+        "path": "/Users/dm/nix-templates",
+        "type": "path"
+      }
+    }
+  ],
+  "version": 2
+}
